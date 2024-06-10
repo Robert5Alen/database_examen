@@ -21,13 +21,42 @@ vector <string> del(vector<string> c);
 
 
 
-
-
-
 int main()
 {
-//entradas
+
+cout<<"Presione el comando a realizar: "<<endl;
+
 string operacion;
+
+while(cin>>operacion)
+{
+
+if(operacion!="Add"||operacion!="Del"||operacion!="Find"||operacion!="Print")
+{
+
+cout<<"Unknown command: "<<operacion<<endl;
+break;
+
+}
+
+
+if(dinam)
+{
+
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
 
 map<string,string> dinam;
 
