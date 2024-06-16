@@ -5,21 +5,6 @@
 
 using namespace std;
 
-struct comp_events{
- 
-
-
-};
-
-
-
-void print(vector<string> d);
-
-vector <string> add(vector<string> b);
-
-vector <string> del(vector<string> c);
-
-
 
 int main()
 {
@@ -31,9 +16,7 @@ string evento;
 string cadena;
 char n;
 
-    
- map<string, string> datos;   
- map<string,string>::iterator i;
+
 
 string operacion;
 
@@ -41,16 +24,22 @@ cout<<"Presione la operacion a realizar o n para salir : "<<endl<<endl;
 
 cout<<"El formato debe ser el siguienteseparados por espacion: Comando Fecha(Año-Mes-Día) Evento"<<endl;
 
-while(cin>>operacion)
+while(true)
 {
+
+getline(cin,operacion);
 int cont=0;
 
-for(int a=0;operacion.size()>a;a++)
+
+//Encuentra los espacios para separar cadenas y enviarlos a un vector
+for(int a=0;operacion.size()>=a;a++)
 {
 
 int spc;
-if(operacion[a]==' ')
+
+if(operacion[a]==' '||operacion[a]==operacion[operacion.size()])
 {
+cadena.clear();    
 spc=a;
 
 for(cont;spc>cont;cont++)
@@ -58,20 +47,30 @@ for(cont;spc>cont;cont++)
 
 cadena+=operacion[cont];
 
-}
-
 
 }
 
-
+datos.push_back(cadena);
 
 }
 
 
 
+}
+
+for(auto &ver:datos)
+{
+
+cout<<ver<<endl;
+
+}
 
 
+if(operacion=="n")
+{
 
+    break;
+}
 }
 
 
