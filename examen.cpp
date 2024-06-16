@@ -3,22 +3,25 @@
 #include<vector>
 #include <string>
 
+//Convierte la entrada de cadena en vector
+
 using namespace std;
 
+vector<string> Vect_datos(const string& operacion);
 
 int main()
 {
 
-vector<string>datos;
+vector<string>data;
 string comando;
 string fecha;
 string evento;
-string cadena;
+
 char n;
 
 
 
-string operacion;
+string str;
 
 cout<<"Presione la operacion a realizar o n para salir : "<<endl<<endl;
 
@@ -27,7 +30,38 @@ cout<<"El formato debe ser el siguienteseparados por espacion: Comando Fecha(Añ
 while(true)
 {
 
-getline(cin,operacion);
+getline(cin,str);
+
+data=Vect_datos(str);
+
+comando=data[0];
+fecha=data[1];
+evento=data[2];
+
+if(comando!="Add"&&comando!="Del"&&comando!="Find"&&comando!="Print")
+{
+
+cout<<"Unknown command: "<<comando<<endl;
+break;
+
+}
+
+
+
+if(str=="n")
+{
+
+    break;
+}
+}
+
+    return 0;
+}
+
+vector<string> Vect_datos(const string& operacion)
+{
+string cadena;
+vector<string>datos;
 int cont=0;
 
 
@@ -66,46 +100,5 @@ cout<<ver<<endl;
 }
 
 
-if(operacion=="n")
-{
-
-    break;
-}
-}
-
-
-/*if(operacion!="Add"||operacion!="Del"||operacion!="Find"||operacion!="Print"||operacion!="n")
-{
-
-cout<<"Unknown command: "<<operacion<<endl;
-break;
-
-}
-
-
-if(operacion=="n")
-{
-
-cout<<"Salida de ejecucion exitosa"<<endl;
-
-break;
-
-}
-
-while( true)
-{
- cout<<"Introduce la fecha en formato Año-Mes-Día seguido el evento y para salir n"<<endl;
- 
- cin>>fecha;
- cin>>evento;
- 
- datos[fecha]=evento;
-
-
-
-
-}*/
-
-
-    return 0;
+    return datos;
 }
