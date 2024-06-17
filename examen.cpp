@@ -3,22 +3,30 @@
 #include<vector>
 #include <string>
 
-//Convierte la entrada de cadena en vector
 
 using namespace std;
 
+//Convierte la entrada de cadena en vector
 vector<string> Vect_datos(const string& operacion);
+
+
+
+void Add( );
 
 int main()
 {
 
+map<string,vector<string>> pares;
 vector<string>data;
+vector<string>fechas;
 string comando;
 string fecha;
-string evento;
-
+vector<string> evento;
+string anio;
 char n;
-
+string month;
+string day;
+bool compara;
 
 
 string str;
@@ -36,7 +44,7 @@ data=Vect_datos(str);
 
 comando=data[0];
 fecha=data[1];
-evento=data[2];
+
 
 if(comando!="Add"&&comando!="Del"&&comando!="Find"&&comando!="Print")
 {
@@ -45,7 +53,79 @@ cout<<"Unknown command: "<<comando<<endl;
 break;
 
 }
+int num=1;
+int guion=0;
+string iter;
+for(int rept=0;rept<fecha.size();rept++ )
+{
 
+if (fecha[0]=='-')
+{
+
+anio+='-';
+continue;
+
+}
+
+if(fecha[rept]=='-'&&fecha[num]=='-')
+{
+
+if(fecha.size()/rept>=2)
+{
+
+month+='-';
+
+
+}
+
+if(fecha.size()/rept>=1)
+{
+
+day+='-';
+
+
+}
+
+
+}
+
+
+if(fecha[rept]=='-')
+{
+
+if(!iter.empty())
+{
+fechas.push_back(iter);
+iter.clear();
+}
+
+
+}
+
+else{
+
+iter+=fecha[rept];
+
+}
+
+if(!iter.empty())
+{
+fechas.push_back(iter);
+
+}
+
+num++;
+}
+
+
+
+if(comando=="Add")
+{
+
+
+
+
+}
 
 
 if(str=="n")
