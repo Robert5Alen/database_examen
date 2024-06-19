@@ -10,6 +10,11 @@ using namespace std;
 vector<string> Vect_datos(const string& operacion);
 
 
+//Convierte la fecha a vector
+vector<string> Vect_fecha(const string& dates,string& anio,string& month, string& day);
+
+bool isNumber(const string& fecha);
+
 
 void Add( );
 
@@ -59,85 +64,35 @@ break;
 
 }
 
-
-
-
-string iter;
-for(int rept=0;rept<fecha.size();rept++ )
+if(!isNumber(fecha))
 {
-
-if (rept==0 && fecha[0]=='-')
-{
-
-anio+='-';
-continue;
-
-}
-
-if(fecha[rept]=='-'&&fecha[rept+1]=='-')
-{
-
-if(fecha.size()/rept>=2)
-{
-
-month+='-';
-
-
-}
-
-if(fecha.size()/rept<=1)
-{
-
-day+='-';
-
-
+cerr<<"Wrong date format: "<<fecha<<endl;
+break;
 }
 
 
-}
+fechas=Vect_fecha(fecha,anio,month,day);
 
-
-if(fecha[rept]=='-')
-{
-
-if(!iter.empty())
-{
-fechas.push_back(iter);
-iter.clear();
-}
+anio+=fechas[0];
+month+=fechas[1];
+day+=fechas[2];
 
 
 
-}
+int anio_num=stoi(anio);
+int month_num=stoi(month);
+int day_num=stoi(day);
 
-else{
+cout<<"\n"<<anio_num<<endl;
+cout<<month_num<<endl;
+cout<<day_num<<endl;
 
-iter+=fecha[rept];
-
-}
-
-}
-
-if(!iter.empty())
-{
-fechas.push_back(iter);
-
-}
-
-cout<<"\n"<<anio<<endl;
-cout<<month<<endl;
-cout<<day<<endl;
+cout<<fecha<<endl;
 
 
-for(string datp:fechas)
-{
-
-cout<<datp<<endl;
-
-}
-
-cout<<fechas.size()<<endl;
-
+anio.clear();
+month.clear();
+day.clear();
 }
 
     return 0;
@@ -184,4 +139,85 @@ datos.push_back(cadena);
 }
 
     return datos;
+}
+
+vector<string> Vect_fecha(const string& dates,string& anio,string& month, string& day)
+{
+string iter;
+vector<string> func2;
+
+for(int rept=0;rept<dates.size();rept++ )
+{
+
+if (rept==0 && dates[0]=='-')
+{
+
+anio+='-';
+continue;
+
+}
+
+if(dates[rept]=='-'&&dates[rept+1]=='-')
+{
+
+if(dates.size()/rept>=2)
+{
+
+month+='-';
+
+
+}
+
+if(dates.size()/rept<=1)
+{
+
+day+='-';
+
+
+}
+
+
+}
+
+
+if(dates[rept]=='-')
+{
+
+if(!iter.empty())
+{
+func2.push_back(iter);
+iter.clear();
+}
+
+
+
+}
+
+else{
+
+iter+=dates[rept];
+
+}
+
+}
+
+if(!iter.empty())
+{
+func2.push_back(iter);
+
+}
+
+
+return func2;
+
+}
+
+
+bool isNumber(const string& fecha) {
+    for (char c : fecha) {
+        if (!isdigit(c) && c != '-' && c != '+') {
+            return false;
+        }
+    }
+    return true;
 }
