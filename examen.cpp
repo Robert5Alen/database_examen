@@ -62,12 +62,10 @@ break;
 
 
 
-int num=1;
-int guion=0;
 string iter;
 for(int rept=0;rept<fecha.size();rept++ )
 {
-cout<<rept<<endl;
+
 if (rept==0 && fecha[0]=='-')
 {
 
@@ -76,7 +74,7 @@ continue;
 
 }
 
-if(fecha[rept]=='-'&&fecha[num]=='-')
+if(fecha[rept]=='-'&&fecha[rept+1]=='-')
 {
 
 if(fecha.size()/rept>=2)
@@ -87,7 +85,7 @@ month+='-';
 
 }
 
-if(fecha.size()/rept>=1&&fecha.size()/rept<2)
+if(fecha.size()/rept<=1)
 {
 
 day+='-';
@@ -109,11 +107,14 @@ iter.clear();
 }
 
 
+
 }
 
 else{
 
 iter+=fecha[rept];
+
+}
 
 }
 
@@ -123,22 +124,19 @@ fechas.push_back(iter);
 
 }
 
-num++;
-}
-
 cout<<"\n"<<anio<<endl;
 cout<<month<<endl;
 cout<<day<<endl;
 
 
-/*for(string &datp:fechas)
+for(string datp:fechas)
 {
 
 cout<<datp<<endl;
 
-}*/
+}
 
-cout<<fechas.size()<<endl;;
+cout<<fechas.size()<<endl;
 
 }
 
