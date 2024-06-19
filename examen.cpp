@@ -26,10 +26,9 @@ string anio;
 char n;
 string month;
 string day;
-bool compara;
-
-
 string str;
+
+
 
 cout<<"Presione la operacion a realizar o n para salir : "<<endl<<endl;
 
@@ -46,6 +45,12 @@ comando=data[0];
 fecha=data[1];
 
 
+if(str=="n")
+{
+
+    break;
+}
+
 if(comando!="Add"&&comando!="Del"&&comando!="Find"&&comando!="Print")
 {
 
@@ -53,13 +58,17 @@ cout<<"Unknown command: "<<comando<<endl;
 break;
 
 }
+
+
+
+
 int num=1;
 int guion=0;
 string iter;
 for(int rept=0;rept<fecha.size();rept++ )
 {
-
-if (fecha[0]=='-')
+cout<<rept<<endl;
+if (rept==0 && fecha[0]=='-')
 {
 
 anio+='-';
@@ -78,7 +87,7 @@ month+='-';
 
 }
 
-if(fecha.size()/rept>=1)
+if(fecha.size()/rept>=1&&fecha.size()/rept<2)
 {
 
 day+='-';
@@ -117,22 +126,20 @@ fechas.push_back(iter);
 num++;
 }
 
+cout<<"\n"<<anio<<endl;
+cout<<month<<endl;
+cout<<day<<endl;
 
 
-if(comando=="Add")
+/*for(string &datp:fechas)
 {
 
+cout<<datp<<endl;
 
+}*/
 
+cout<<fechas.size()<<endl;;
 
-}
-
-
-if(str=="n")
-{
-
-    break;
-}
 }
 
     return 0;
@@ -164,21 +171,19 @@ cadena+=operacion[cont];
 
 }
 
+if(cadena[0]==' ')
+{
+
+cadena.erase(0,1);
+
+}
+
 datos.push_back(cadena);
 
 }
 
 
-
 }
-
-for(auto &ver:datos)
-{
-
-cout<<ver<<endl;
-
-}
-
 
     return datos;
 }
