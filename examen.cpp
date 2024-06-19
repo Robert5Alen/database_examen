@@ -13,7 +13,8 @@ vector<string> Vect_datos(const string& operacion);
 //Convierte la fecha a vector
 vector<string> Vect_fecha(const string& dates,string& anio,string& month, string& day);
 
-bool isNumber(const string& fecha);
+//Verifica si el formato de fecha es correcto
+bool Ver_form(string& anio,string& month, string& day,string& fecha);
 
 
 void Add( );
@@ -44,17 +45,19 @@ while(true)
 
 getline(cin,str);
 
+if(str=="n")
+{
+
+    break;
+}
+
 data=Vect_datos(str);
 
 comando=data[0];
 fecha=data[1];
 
 
-if(str=="n")
-{
 
-    break;
-}
 
 if(comando!="Add"&&comando!="Del"&&comando!="Find"&&comando!="Print")
 {
@@ -64,13 +67,6 @@ break;
 
 }
 
-if(!isNumber(fecha))
-{
-cerr<<"Wrong date format: "<<fecha<<endl;
-break;
-}
-
-
 fechas=Vect_fecha(fecha,anio,month,day);
 
 anio+=fechas[0];
@@ -79,15 +75,20 @@ day+=fechas[2];
 
 
 
+if(Ver_form(anio,month,day,fecha)==false)
+{
+
+    break;
+}
 int anio_num=stoi(anio);
 int month_num=stoi(month);
-int day_num=stoi(day);
+int day_num=stoi(day);  
 
 cout<<"\n"<<anio_num<<endl;
 cout<<month_num<<endl;
 cout<<day_num<<endl;
 
-cout<<fecha<<endl;
+
 
 
 anio.clear();
@@ -213,11 +214,25 @@ return func2;
 }
 
 
-bool isNumber(const string& fecha) {
-    for (char c : fecha) {
-        if (!isdigit(c) && c != '-' && c != '+') {
-            return false;
-        }
+bool Ver_form(string& anio,string& month, string& day,string& fecha)
+{
+
+   try {
+     
+int anio_num=stoi(anio);
+int month_num=stoi(month);
+int day_num=stoi(day);
+
+return true;
+        
+    } catch (const exception& e) {
+        
+        cerr << "Error al convertir la cadena a entero: "<< fecha<<endl<<endl;
+        return false;
     }
-    return true;
+
+
+
 }
+     
+    
