@@ -58,7 +58,10 @@ if(str=="n")
 
 data=Vect_datos(str);
 
+
 comando=data[0];
+if(data.size()>1)
+{
 fecha=data[1];
 
 
@@ -118,9 +121,7 @@ break;
 
 }
 
-cout<<"\n"<<anio_num<<endl;
-cout<<month_num<<endl;
-cout<<day_num<<endl;
+
 
 if(comando=="Add")
 {
@@ -198,19 +199,7 @@ cout<<"Deleted "<<tam<< " events"<<endl;
 
 }
 
-for(const auto& iter:pares)
-{
-cout<<iter.first<<" ";
 
-for(string l:iter.second)
-{
-cout<<l<<" ";
-
-}
-
-cout<<endl;
-
-}
 }
 
 else if(comando=="Find")
@@ -228,12 +217,23 @@ cout<<y<<" ";
 }
 cout<<endl;
 }
-
+}
 else if(comando=="Print")
 {
 
+for(const auto& iter:pares)
+{
+cout<<iter.first<<" ";
 
+for(string l:iter.second)
+{
+cout<<l<<" ";
 
+}
+
+cout<<endl;
+
+}
     
 }
 
