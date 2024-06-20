@@ -2,6 +2,7 @@
 #include<map>
 #include<vector>
 #include <string>
+#include <algorithm>
 
 
 using namespace std;
@@ -157,6 +158,46 @@ evento.push_back(data[2]);
 
 pares[fecha]=evento;
 
+
+}
+
+else if(comando=="Del")
+{
+    
+if (data.size()==3)
+{
+
+auto& vec = pares[fecha];
+int tam_vect=vec.size();
+vec.erase(remove(vec.begin(), vec.end(),data[2]), vec.end());
+
+if(vec.size()==tam_vect)
+{
+
+cout<<"Event not found"<<endl;
+
+}
+else{
+
+cout<<"Deleted successfully"<<endl;
+
+}
+
+}
+
+else if(data.size()==2)
+{
+
+auto& vect= pares[fecha];
+int tam=vect.size();
+
+vect.erase(vect.begin(),vect.end());
+
+cout<<"Deleted "<<tam<< " events"<<endl;
+
+
+}
+
 for(const auto& iter:pares)
 {
 cout<<iter.first<<" ";
@@ -172,15 +213,28 @@ cout<<endl;
 }
 }
 
-else if(comando=="Del")
-{
-if (data.size()<=3)
+else if(comando=="Find")
 {
 
+auto& orden=pares[fecha];
 
+sort(orden.begin(),orden.end());
+
+for(const string& y:orden)
+{
+
+cout<<y<<" ";
 
 }
+cout<<endl;
+}
 
+else if(comando=="Print")
+{
+
+
+
+    
 }
 
 anio.clear();
