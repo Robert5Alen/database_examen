@@ -5,6 +5,12 @@
 
 
 using namespace std;
+ 
+ struct Fecha_df{
+
+ };
+
+
 
 //Convierte la entrada de cadena en vector
 vector<string> Vect_datos(const string& operacion);
@@ -17,7 +23,6 @@ vector<string> Vect_fecha(const string& dates,string& anio,string& month, string
 bool Ver_form(string& anio,string& month, string& day,string& fecha);
 
 
-void Add( );
 
 int main()
 {
@@ -29,7 +34,6 @@ string comando;
 string fecha;
 vector<string> evento;
 string anio;
-char n;
 string month;
 string day;
 string str;
@@ -58,6 +62,16 @@ fecha=data[1];
 
 
 
+ try {
+     
+int a=stoi(data[1]);
+
+        
+    } catch (const exception& e) {
+        
+        cerr << "Wrong date format: "<< fecha<<endl<<endl;
+        break;
+    }
 
 if(comando!="Add"&&comando!="Del"&&comando!="Find"&&comando!="Print")
 {
@@ -66,6 +80,9 @@ cout<<"Unknown command: "<<comando<<endl;
 break;
 
 }
+
+
+
 
 fechas=Vect_fecha(fecha,anio,month,day);
 
@@ -84,12 +101,87 @@ int anio_num=stoi(anio);
 int month_num=stoi(month);
 int day_num=stoi(day);  
 
+if(month_num>12||month_num<0)
+{
+
+cout<<"Month value is invalid: "<<month_num<<endl;
+break;
+
+}
+
+if(day_num>31||day_num<0)
+{
+
+cout<<"Day value is invalid: "<<month_num<<endl;
+break;
+
+}
+
 cout<<"\n"<<anio_num<<endl;
 cout<<month_num<<endl;
 cout<<day_num<<endl;
 
+if(comando=="Add")
+{
+
+evento.push_back(data[2]);
+
+for(const auto& m:pares)
+{
+    
+if(fecha!=m.first)
+{
+evento.clear();
+evento.push_back(data[2]);
+}
+
+else{
+evento.clear();
+for(string asing:m.second)
+{
+    if(asing==data[2])
+    {
+        continue;
+    }
+    
+evento.push_back(asing);
+
+}
+
+evento.push_back(data[2]);
+
+}
+
+}
 
 
+pares[fecha]=evento;
+
+for(const auto& iter:pares)
+{
+cout<<iter.first<<" ";
+
+for(string l:iter.second)
+{
+cout<<l<<" ";
+
+}
+
+cout<<endl;
+
+}
+}
+
+else if(comando=="Del")
+{
+if (data.size()<=3)
+{
+
+
+
+}
+
+}
 
 anio.clear();
 month.clear();
@@ -174,12 +266,9 @@ if(dates.size()/rept<=1)
 
 day+='-';
 
-
 }
 
-
 }
-
 
 if(dates[rept]=='-')
 {
@@ -227,7 +316,7 @@ return true;
         
     } catch (const exception& e) {
         
-        cerr << "Error al convertir la cadena a entero: "<< fecha<<endl<<endl;
+        cerr << "Wrong date format: "<< fecha<<endl<<endl;
         return false;
     }
 
@@ -235,4 +324,7 @@ return true;
 
 }
      
+    
+
+
     
